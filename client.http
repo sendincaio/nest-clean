@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:3333
+@authToken = {{authenticate.response.body.access_token}}
+
+# @name create_account
+POST {{baseUrl}}/accounts
+Content-Type: application/json
+
+{
+  "name": "Caio Sendin",
+  "email": "caiosendin@email.com",
+  "password": "123456"
+}
+
+###
+
+# @name authenticate
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "email": "caiosendin@email.com",
+  "password": "123456"
+}
+
+###
+
+# @name create_question
+POST {{baseUrl}}/questions
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Copa do Mundo 2022",
+  "content": "A Copa do Mundo começa no dia 20 de novembro, no estádio Al Bayt."
+}
